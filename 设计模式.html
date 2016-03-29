@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>设计模式</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>设计模式</h1>
+<hr />
+<h2>设计原则</h2>
+<h4><strong>单一职责原则</strong> <em>(Single Responsibility Principle，SRP)</em> ： 应该有且仅有一个原因引起类的变更。</h4>
+<h4><strong>里氏替换原则</strong> <em>(Liskov Substitution Principle，LSP)</em> ： 所有引用基类的地方必须能透明地使用其子类的对象</h4>
+<ul>
+<li>子类必须完全实现父类的方法</li>
+<li>子类可以有自己的个性</li>
+<li>覆盖或实现父类的方法时输入参数可以被放大</li>
+<li>覆写或实现父类的方法时输出结果可以被缩小</li>
+</ul>
+<h4><strong>依赖倒置原则</strong> <em>(Dependence Inversion Principle，DIP)</em>： 面向接口编程 (Object-Oriented Design,OOD)</h4>
+<ul>
+<li>高层模块不应该依赖低层模块，两者都应该依赖其抽象；</li>
+<li>抽象不应该依赖细节；</li>
+<li>细节应该依赖抽象</li>
+</ul>
+<blockquote>
+<h5>依赖的三种写法</h5>
+<ul>
+<li>构造函数传递依赖对象</li>
+<li>Setter方法传递依赖对象</li>
+<li>接口声明依赖对象</li>
+</ul>
+</blockquote>
+<h4>接口隔离原则</h4>
+<ul>
+<li>客户端不应该依赖它不需要的接口</li>
+<li>类间的依赖关系应该建立在最小的接口上</li>
+</ul>
+<blockquote>
+<p>建立单一接口，不要建立臃肿庞大的接口。再通俗一点讲：接口尽量细化，同时接口中的方法尽量少</p>
+</blockquote>
+<h4>迪米特法则<em>（Law of Demeter，LoD）</em>也称为最少知识原则<em>（Least Knowledge Principle，LKP）</em>: 一个对象应该对其他对象有最少的了解</h4>
+<h4>开闭原则： 一个软件实体如类、模块和函数应该对扩展开放，对修改关闭</h4>
+<h2>23种设计模式</h2>
+<h4>单例模式<em>（Singleton Pattern）</em></h4>
+<p>确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.png" /></p>
+<h4>工厂方法模式</h4>
+<p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法使一个类的实例化延迟到其子类。<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.png" /></p>
+<blockquote>
+<p><strong>工厂模式变种</strong>
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png" />
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E6%9B%BF%E4%BB%A3%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%B1%BB%E5%9B%BE.png" />
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/%E5%A4%9A%E4%B8%AA%E5%B7%A5%E5%8E%82%E7%B1%BB.png" /></p>
+</blockquote>
+<h4>抽象工厂模式</h4>
+<p>为创建一组相关或相互依赖的对象提供一个接口，而且无须指定它们的具体类。
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>模板方法模式</h4>
+<p>定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改
+变一个算法的结构即可重定义该算法的某些特定步骤<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/10%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F.png" /></p>
+<blockquote>
+<p>提供钩子方法的扩展模板模式
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/10%E6%89%A9%E5%B1%95%E6%82%8D%E9%A9%AC%E8%BD%A6%E6%A8%A1%E7%B1%BB%E5%9B%BE.png" /></p>
+</blockquote>
+<h4>建造者模式（Builder Pattern）</h4>
+<p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/11%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>代理模式（Proxy Pattern）</h4>
+<p>为其他对象提供一种代理以控制对这个对象的访问
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/12%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" alt="通用" />
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/12%E6%99%AE%E9%80%9A%E4%BB%A3%E7%90%86%E7%B1%BB%E5%9B%BE1.png" />
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/12%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%862.png" /></p>
+<h4>原型模式（Prototype Pattern）</h4>
+<p>用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对
+象。
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/13%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>中介者模式</h4>
+<p>用一个中介对象封装一系列的对象交互，中介者使各对象不需要显示地相互作用，从而使其耦合松散，而且可以独立地改变它们之间的交互
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/14%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>命令模式</h4>
+<p>将一个请求封装成一个对象，从而让你使用不同的请求把客户端参数化，对请
+求排队或者记录请求日志，可以提供命令的撤销和恢复功能
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/15%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>责任链模式</h4>
+<p>使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关
+系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/16%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>装饰模式</h4>
+<p>动态地给一个对象添加一些额外的职责。就增加功能来说，装饰模式相比生成子类更为灵活
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/17%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>策略模式（Strategy Pattern）</h4>
+<p>定义一组算法，将每个算法都封装起来，并且使它们之间可以互换
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/18%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>适配器模式（Adapter Pattern）</h4>
+<p>将一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/19%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>迭代器模式（Iterator Pattern）(@Deprecated)</h4>
+<p>它提供一种方法访问一个容器对象中各个元素，而又不需暴露该对象的内部细节
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/20%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>组合模式(Composite Pattern)</h4>
+<p>将对象组合成树形结构以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/21%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>观察者模式（Observer Pattern）也叫做发布订阅模式（Publish/subscribe）</h4>
+<p>定义对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并被自动更新
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/22%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>门面模式（Facade Pattern）也叫做外观模式</h4>
+<p>要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。门面模式提供一个高层次的接口，使得子系统更易于使用
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/23%E6%89%A9%E5%B1%95%E5%90%8E%E7%9A%84%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>备忘录模式（Memento Pattern）</h4>
+<p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/24%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>访问者模式（Visitor Pattern）</h4>
+<p>封装一些作用于某种数据结构中的各元素的操作，它可以在不改变数据结构的前提下定义作用于这些元素的新的操作
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/25%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>状态模式</h4>
+<p>当一个对象内在状态改变时允许其改变行为，这个对象看起来像改变了其类。
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/26%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>解释器模式（Interpreter Pattern）是一种按照规定语法进行解析的方案</h4>
+<p>给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语言中的句子
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/27%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>享元模式（Flyweight Pattern）</h4>
+<p>使用共享对象可有效地支持大量的细粒度的对象
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/28%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+<h4>桥梁模式（Bridge Pattern）也叫做桥接模式</h4>
+<p>将抽象和实现解耦，使得两者可以独立地变化
+<img src="https://raw.githubusercontent.com/zhouxinzhijian/Markdown/master/29%E6%A1%A5%E6%A2%81%E6%A8%A1%E5%BC%8F%E9%80%9A%E7%94%A8%E7%B1%BB%E5%9B%BE.png" /></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
